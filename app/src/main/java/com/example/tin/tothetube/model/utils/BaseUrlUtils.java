@@ -3,8 +3,8 @@ package com.example.tin.tothetube.model.utils;
 import com.example.tin.tothetube.BuildConfig;
 import com.example.tin.tothetube.model.NetworkUtils;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+//import retrofit2.Retrofit;
+//import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Tin on 27/05/2018.
@@ -37,14 +37,14 @@ public class BaseUrlUtils {
     public static final double DEFAULT_LAT = 51.514;
     public static final double DEFAULT_LON = 0.122;
 
-    public static TflUrlUtils getTflBaseUrl() {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_TFL_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(TflUrlUtils.class);
-    }
+//    public static TflUrlUtils getTflBaseUrl() {
+//
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_TFL_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        return retrofit.create(TflUrlUtils.class);
+//    }
 
 }
