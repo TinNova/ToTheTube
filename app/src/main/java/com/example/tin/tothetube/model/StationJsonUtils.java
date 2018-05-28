@@ -46,9 +46,7 @@ public class StationJsonUtils {
                 double distance = stationJsonObject.getDouble(TFL_DISTANCE);
                 double lat = stationJsonObject.getDouble(TFL_LAT);
                 double lon = stationJsonObject.getDouble(TFL_LON);
-                long timeOfArrival0 = 0;
-                long timeOfArrival1 = 0;
-                long timeOfArrival2 = 0;
+                ArrayList<Arrival> arrivals = null;
 
                 Station station = new Station(
                         naptanId,
@@ -56,9 +54,7 @@ public class StationJsonUtils {
                         distance,
                         lat,
                         lon,
-                        timeOfArrival0,
-                        timeOfArrival1,
-                        timeOfArrival2
+                        arrivals
                 );
 
                 mStation.add(station);

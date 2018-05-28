@@ -3,6 +3,8 @@ package com.example.tin.tothetube.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 /**
  * Created by Tin on 27/05/2018.
  */
@@ -17,19 +19,15 @@ public class Station implements Parcelable {
     private double distance; // How far away the station in (in metres probably?)
     private double lat; // The coordinates of the station
     private double lon; // The coordinates of the station
-    private long timeOfArrival0;
-    private long timeOfArrival1;
-    private long timeOfArrival2;
+    private ArrayList<Arrival> arrivals; // Arraylist of Arrival times for this station
 
-    public Station(String naptanId, String commonName, double distance, double lat, double lon, long timeOfArrival0, long timeOfArrival1, long timeOfArrival2) {
+    public Station(String naptanId, String commonName, double distance, double lat, double lon, ArrayList<Arrival> arrivals) {
         this.naptanId = naptanId;
         this.commonName = commonName;
         this.distance = distance;
         this.lat = lat;
         this.lon = lon;
-        this.timeOfArrival0 = timeOfArrival0;
-        this.timeOfArrival1 = timeOfArrival1;
-        this.timeOfArrival2 = timeOfArrival2;
+        this.arrivals = arrivals;
     }
 
     protected Station(Parcel in) {
@@ -38,9 +36,7 @@ public class Station implements Parcelable {
         distance = in.readDouble();
         lat = in.readDouble();
         lon = in.readDouble();
-        timeOfArrival0 = in.readLong();
-        timeOfArrival1 = in.readLong();
-        timeOfArrival2 = in.readLong();
+        arrivals = in.createTypedArrayList(Arrival.CREATOR);
 
     }
 
@@ -51,9 +47,7 @@ public class Station implements Parcelable {
         dest.writeDouble(distance);
         dest.writeDouble(lat);
         dest.writeDouble(lon);
-        dest.writeLong(timeOfArrival0);
-        dest.writeLong(timeOfArrival1);
-        dest.writeLong(timeOfArrival2);
+        dest.writeTypedList(arrivals);
     }
 
     @Override
@@ -93,15 +87,7 @@ public class Station implements Parcelable {
         return lon;
     }
 
-    public void setTimeOfArrival0(long timeOfArrival0) {
-        this.timeOfArrival0 = timeOfArrival0;
-    }
-
-    public void setTimeOfArrival1(long timeOfArrival1) {
-        this.timeOfArrival1 = timeOfArrival1;
-    }
-
-    public void setTimeOfArrival2(long timeOfArrival2) {
-        this.timeOfArrival2 = timeOfArrival2;
+    public void setArrivals(ArrayList<Arrival> arrivals) {
+        this.arrivals = arrivals;
     }
 }

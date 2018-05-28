@@ -73,9 +73,8 @@ public class MainPresenter implements MainContract.MainPresenter {
                     i++;
                     Log.d(TAG, "arrivals List:" + arrivals);
 
-                    station.setTimeOfArrival0(arrivals.get(0).getTimeToStation());
-                    station.setTimeOfArrival1(arrivals.get(1).getTimeToStation());
-                    station.setTimeOfArrival2(arrivals.get(2).getTimeToStation());
+                    /* Adding Arrival Time ArrayList to Station Arraylist */
+                    station.setArrivals(arrivals);
 
                     Log.d(TAG, "Station with Arrival Times: " + station);
 
@@ -87,7 +86,6 @@ public class MainPresenter implements MainContract.MainPresenter {
                         mainView.showStation(stations);
 
                     }
-
                 }
             });
     }
