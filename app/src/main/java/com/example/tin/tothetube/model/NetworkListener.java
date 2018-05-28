@@ -14,7 +14,7 @@ public interface NetworkListener {
     }
 
     interface ArrivalsListener {
-        void getArrivalsArrayList(ArrayList<Arrival> arrivals);
+        void getArrivalsArrayList(ArrayList<Arrival> arrivals, Station station);
     }
 
 }

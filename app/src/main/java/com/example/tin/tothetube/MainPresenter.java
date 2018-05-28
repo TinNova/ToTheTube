@@ -42,7 +42,7 @@ public class MainPresenter implements MainContract.MainPresenter {
             @Override
             public void getStationArrayList(ArrayList<Station> stations) throws MalformedURLException {
 
-//                /* Show weather on screen */
+                /* Show weather on screen */
 //                mainView.showStation(stations);
 
                 /* Taking the naptanId from every station item and create a list of Arrival URLs */
@@ -58,36 +58,38 @@ public class MainPresenter implements MainContract.MainPresenter {
         });
     }
 
+    int i;
+
     @Override
     public void getAllArrivalTimes(Context context, final ArrayList<Station> stations) throws MalformedURLException {
 
-        for (int i = 0; i < stations.size(); i++) {
+            i = 0;
 
-            final Station mStation = stations.get(i);
-
-            String arrivalUrl = NetworkUtils.getArrivalsUrl(mStation.getNaptanId());
-
-            NetworkConnection.getInstance(context).getArrivalTimesResponse(arrivalUrl, new NetworkListener.ArrivalsListener() {
-
+            NetworkConnection.getInstance(context).getArrivalTimesResponse(stations, new NetworkListener.ArrivalsListener() {
 
                 @Override
-                public void getArrivalsArrayList(ArrayList<Arrival> arrivals) {
+                public void getArrivalsArrayList(ArrayList<Arrival> arrivals, Station station) {
 
+                    i++;
                     Log.d(TAG, "arrivals List:" + arrivals);
 
-                    mStation.setTimeOfArrival0(arrivals.get(0).getTimeToStation());
-                    mStation.setTimeOfArrival1(arrivals.get(1).getTimeToStation());
-                    mStation.setTimeOfArrival2(arrivals.get(2).getTimeToStation());
+                    station.setTimeOfArrival0(arrivals.get(0).getTimeToStation());
+                    station.setTimeOfArrival1(arrivals.get(1).getTimeToStation());
+                    station.setTimeOfArrival2(arrivals.get(2).getTimeToStation());
 
-                    Log.d(TAG, "Station with Arrival Times: " + mStation);
+                    Log.d(TAG, "Station with Arrival Times: " + station);
+
+                    Log.d(TAG, "i 1: " + i);
+                    if (stations.size() == i) {
+
+                        Log.d(TAG, "i 2: " + i);
+                        Log.d(TAG, "stations: " + stations);
+                        mainView.showStation(stations);
+
+                    }
 
                 }
             });
-        }
-
-        /* Show weather on screen */
-        mainView.showStation(stations);
-
     }
 
 
