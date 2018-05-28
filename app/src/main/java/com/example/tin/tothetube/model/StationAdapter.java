@@ -52,6 +52,8 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
 
         viewHolder.tvStation.setText(station.getCommonName());
 
+        station.getNaptanId();
+
     }
 
     @Override

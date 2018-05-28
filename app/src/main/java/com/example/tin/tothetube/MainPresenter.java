@@ -28,8 +28,6 @@ public class MainPresenter implements MainContract.MainPresenter {
 
     Context mcontext;
 
-    //ArrayList<String> napIds = new ArrayList<>();
-
     @Override
     public void getAllStations(Context context) throws MalformedURLException {
 
@@ -44,39 +42,52 @@ public class MainPresenter implements MainContract.MainPresenter {
             @Override
             public void getStationArrayList(ArrayList<Station> stations) throws MalformedURLException {
 
-                /* Show weather on screen */
-                mainView.showStation(stations);
+//                /* Show weather on screen */
+//                mainView.showStation(stations);
 
                 /* Taking the naptanId from every station item and create a list of Arrival URLs */
-                ArrayList<String> napIds = new ArrayList<>();
-                for (int i = 0; i < stations.size(); i++) {
-                    String arrivalUrl = NetworkUtils.getArrivalsUrl(stations.get(i).getNaptanId());
-                    napIds.add(arrivalUrl);
-                }
+//                ArrayList<String> napIds = new ArrayList<>();
+//                for (int i = 0; i < stations.size(); i++) {
+//                    String arrivalUrl = NetworkUtils.getArrivalsUrl(stations.get(i).getNaptanId());
+//                    napIds.add(arrivalUrl);
+//                }
 
-                getAllArrivalTimes(mcontext, napIds);
+                getAllArrivalTimes(mcontext, stations);
 
             }
         });
     }
 
     @Override
-    public void getAllArrivalTimes(Context context, ArrayList<String> arrivalUrls) throws MalformedURLException {
+    public void getAllArrivalTimes(Context context, final ArrayList<Station> stations) throws MalformedURLException {
 
-        for (int i = 0; i < arrivalUrls.size(); i++) {
+        for (int i = 0; i < stations.size(); i++) {
 
-            String arrivalUrl = arrivalUrls.get(i);
+            final Station mStation = stations.get(i);
+
+            String arrivalUrl = NetworkUtils.getArrivalsUrl(mStation.getNaptanId());
 
             NetworkConnection.getInstance(context).getArrivalTimesResponse(arrivalUrl, new NetworkListener.ArrivalsListener() {
+
 
                 @Override
                 public void getArrivalsArrayList(ArrayList<Arrival> arrivals) {
 
                     Log.d(TAG, "arrivals List:" + arrivals);
 
+                    mStation.setTimeOfArrival0(arrivals.get(0).getTimeToStation());
+                    mStation.setTimeOfArrival1(arrivals.get(1).getTimeToStation());
+                    mStation.setTimeOfArrival2(arrivals.get(2).getTimeToStation());
+
+                    Log.d(TAG, "Station with Arrival Times: " + mStation);
+
                 }
             });
         }
+
+        /* Show weather on screen */
+        mainView.showStation(stations);
+
     }
 
 

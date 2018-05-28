@@ -22,6 +22,6 @@ public interface MainContract {
 
         void getAllStations(Context context) throws MalformedURLException;
 
-        void getAllArrivalTimes(Context context, ArrayList<String> arrivalUrls) throws MalformedURLException;
+        void getAllArrivalTimes(Context context, ArrayList<Station> stations) throws MalformedURLException;
     }
 }

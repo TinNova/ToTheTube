@@ -25,14 +25,11 @@ public class ArrivalJsonUtils {
 
         try {
 
-//        /* Define the entire response as a JSON Object */
-//            JSONObject tflJsonObject = new JSONObject(response);
-
         /* Define the "stopPoints" JsonArray as a JSONArray */
             JSONArray tflJsonArray = new JSONArray(response);
 
         /* Using a for loop to cycle through each JsonObject within the listJsonArray */
-            for (int i = 0; i < tflJsonArray.length(); i++) {
+            for (int i = 0; i < 3; i++) {
 
             /* Get the ith forecast in the JSON and define it as a JsonObject */
                 JSONObject arrivalJsonObject = tflJsonArray.getJSONObject(i);
@@ -40,7 +37,6 @@ public class ArrivalJsonUtils {
                 String lineId = arrivalJsonObject.getString(TFL_LINE_ID);
                 String lineName = arrivalJsonObject.getString(TFL_LINE_NAME);
                 long timeToStation = arrivalJsonObject.getLong(TFL_TIME_TO_STATION);
-
 
                 Arrival arrival = new Arrival(
                         lineId,
