@@ -12,15 +12,14 @@ import com.android.volley.toolbox.Volley;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-/**
- * Created by Tin on 27/05/2018.
- */
 
 public class NetworkConnection {
 
     private static final String TAG = NetworkConnection.class.getSimpleName();
 
     private ArrayList<Station> mStation = new ArrayList<>();
+    private ArrayList<Arrival> mArrival = new ArrayList<>();
+
 
     private static NetworkConnection instance = null;
 
@@ -47,7 +46,6 @@ public class NetworkConnection {
         return instance;
     }
 
-
     public void getStationResponseFromHttpUrl(String url, final NetworkListener.StationsListener listener) throws MalformedURLException {
 
         /* If the mStation ArrayList contains old data, remove it */
@@ -64,11 +62,13 @@ public class NetworkConnection {
             public void onResponse(final String response) {
 
                 mStation = StationJsonUtils.parseStationJson(response);
-
                 Log.d(TAG + ": ", "Response : " + response);
-
                 /* Send mStation ArrayList to MainActivity */
-                listener.getStationArrayList(mStation);
+                try {
+                    listener.getStationArrayList(mStation);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
             }
         };
 
@@ -77,6 +77,7 @@ public class NetworkConnection {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
+                Log.d(TAG, "Volley Stations onErrorResponse: " + error);
             }
         };
 
@@ -84,6 +85,47 @@ public class NetworkConnection {
         StringRequest request = new StringRequest(Request.Method.GET, url, responseListener, errorListener) {
         };
 
+        mRequestQueue.add(request);
+    }
+
+
+    public void getArrivalTimesResponse(String url, final NetworkListener.ArrivalsListener listener) throws MalformedURLException {
+
+        //TODO: this should be done only when the 0th Arrival Url is passed
+
+//        /* If the mStation ArrayList contains old data, remove it */
+//        if (mStation != null) {
+//            mStation.clear();
+//        }
+
+        /* Handler for the JSON response when server returns ok */
+        final com.android.volley.Response.Listener<String>
+                responseListener = new com.android.volley.Response.Listener<String>() {
+
+            /* If response is successful */
+            @Override
+            public void onResponse(final String response) {
+
+                mArrival = ArrivalJsonUtils.parseArrivalJson(response);
+                Log.d(TAG + ": ", "Response : " + response);
+                /* Send mStation ArrayList to MainActivity */
+                listener.getArrivalsArrayList(mArrival);
+            }
+        };
+
+        /* Handler for when the server returns an error response */
+        com.android.volley.Response.ErrorListener errorListener = new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.d(TAG, "Volley Arrivals onErrorResponse: " + error);
+
+            }
+        };
+
+        /* This is the body of the Request */
+        StringRequest request = new StringRequest(Request.Method.GET, url, responseListener, errorListener) {
+        };
 
         mRequestQueue.add(request);
     }

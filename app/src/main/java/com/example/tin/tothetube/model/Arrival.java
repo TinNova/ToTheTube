@@ -11,9 +11,9 @@ public class Arrival implements Parcelable {
 
     String lineId; // // Needed for when the arrival time is clicked on to show the line it's connected to in DetailActivity
     String lineName;
-    int timeToStation; // Needed to find the next three trains and their arrival times
+    long timeToStation; // Needed to find the next three trains and their arrival times
 
-    public Arrival(String lineId, String lineName, int timeToStation) {
+    public Arrival(String lineId, String lineName, long timeToStation) {
         this.lineId = lineId;
         this.lineName = lineName;
         this.timeToStation = timeToStation;
@@ -22,14 +22,14 @@ public class Arrival implements Parcelable {
     protected Arrival(Parcel in) {
         lineId = in.readString();
         lineName = in.readString();
-        timeToStation = in.readInt();
+        timeToStation = in.readLong();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(lineId);
         dest.writeString(lineName);
-        dest.writeInt(timeToStation);
+        dest.writeLong(timeToStation);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class Arrival implements Parcelable {
         return lineName;
     }
 
-    public int getTimeToStation() {
+    public long getTimeToStation() {
         return timeToStation;
     }
 }

@@ -30,10 +30,10 @@ public class StationJsonUtils {
         try {
 
             /* Define the entire response as a JSON Object */
-            JSONObject openWeatherJsonObject = new JSONObject(response);
+            JSONObject tflJsonObject = new JSONObject(response);
 
             /* Define the "stopPoints" JsonArray as a JSONArray */
-            JSONArray stopPointsJsonArray = openWeatherJsonObject.getJSONArray(TFL_STOP_POINTS_LIST);
+            JSONArray stopPointsJsonArray = tflJsonObject.getJSONArray(TFL_STOP_POINTS_LIST);
 
             /* Using a for loop to cycle through each JsonObject within the listJsonArray */
             for (int i = 0; i < stopPointsJsonArray.length(); i++) {

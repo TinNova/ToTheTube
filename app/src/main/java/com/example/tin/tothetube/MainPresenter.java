@@ -1,7 +1,9 @@
 package com.example.tin.tothetube;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.example.tin.tothetube.model.Arrival;
 import com.example.tin.tothetube.model.NetworkConnection;
 import com.example.tin.tothetube.model.NetworkListener;
 import com.example.tin.tothetube.model.NetworkUtils;
@@ -24,24 +26,67 @@ public class MainPresenter implements MainContract.MainPresenter {
         this.mainView = view;
     }
 
+    Context mcontext;
+
+    //ArrayList<String> napIds = new ArrayList<>();
+
     @Override
     public void getAllStations(Context context) throws MalformedURLException {
 
-        String url = NetworkUtils.getRadiusUrl(DEFAULT_LAT, DEFAULT_LON);
+        String stationUrl = NetworkUtils.getRadiusUrl(DEFAULT_LAT, DEFAULT_LON);
 
+        mcontext = context;
         /*
          * Use the String URL "weatherRequestUrl" to request the JSON from the server
          * and parse it
          */
-        NetworkConnection.getInstance(context).getStationResponseFromHttpUrl(url, new NetworkListener.StationsListener() {
+        NetworkConnection.getInstance(context).getStationResponseFromHttpUrl(stationUrl, new NetworkListener.StationsListener() {
             @Override
-            public void getStationArrayList(ArrayList<Station> stations) {
+            public void getStationArrayList(ArrayList<Station> stations) throws MalformedURLException {
 
                 /* Show weather on screen */
                 mainView.showStation(stations);
 
-                /** NOW MAKE A NETWORK CONNECTION TO GET THE ARRIVAL TIMES! */
+                /* Taking the naptanId from every station item and create a list of Arrival URLs */
+                ArrayList<String> napIds = new ArrayList<>();
+                for (int i = 0; i < stations.size(); i++) {
+                    String arrivalUrl = NetworkUtils.getArrivalsUrl(stations.get(i).getNaptanId());
+                    napIds.add(arrivalUrl);
+                }
+
+                getAllArrivalTimes(mcontext, napIds);
+
             }
         });
     }
+
+    @Override
+    public void getAllArrivalTimes(Context context, ArrayList<String> arrivalUrls) throws MalformedURLException {
+
+        for (int i = 0; i < arrivalUrls.size(); i++) {
+
+            String arrivalUrl = arrivalUrls.get(i);
+
+            NetworkConnection.getInstance(context).getArrivalTimesResponse(arrivalUrl, new NetworkListener.ArrivalsListener() {
+
+                @Override
+                public void getArrivalsArrayList(ArrayList<Arrival> arrivals) {
+
+                    Log.d(TAG, "arrivals List:" + arrivals);
+
+                }
+            });
+        }
+    }
+
+
+    //TODO:
+    /** NOW MAKE A NETWORK CONNECTION TO GET THE ARRIVAL TIMES! */
+    /** Display the arrival times under each station */
+    //--OR--//
+    /** Get the ArrayList of Arrival Times
+     * Only after the Arrival times ArrayList has been build should we add the Station
+     * and Arrival times to the Adapter. Then in onBindViewHolder make sure we add the
+     * Station followed by that stations three arrival times.
+     * Then the onClick can be handled in the presenter, see StarWars example for this. */
 }

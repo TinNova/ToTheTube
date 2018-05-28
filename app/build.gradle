@@ -37,4 +37,6 @@ dependencies {
     implementation 'com.android.volley:volley:1.0.0'
     /* RecyclerView Dependency */
     compile 'com.android.support:recyclerview-v7:27.1.1'
+    /* Eventbus Dependency */
+    compile 'org.greenrobot:eventbus:3.1.1'
 }

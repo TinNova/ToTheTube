@@ -1,5 +1,6 @@
 package com.example.tin.tothetube.model;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public interface NetworkListener {
 
     interface StationsListener {
-        void getStationArrayList(ArrayList<Station> stations);
+        void getStationArrayList(ArrayList<Station> stations) throws MalformedURLException;
     }
 
     interface ArrivalsListener {

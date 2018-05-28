@@ -24,7 +24,7 @@ public class NetworkUtils {
 
     /* Path for API */
     private static final String STOP_POINT_PATH = "StopPoint";
-    private static final String ARRIVALS_PATH = "Arrival";
+    private static final String ARRIVALS_PATH = "Arrivals";
 
     /* Parameters for API*/
     private static final String STOP_TYPES_PARAM = "stopTypes";

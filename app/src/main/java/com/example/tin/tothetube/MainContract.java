@@ -21,5 +21,7 @@ public interface MainContract {
     interface MainPresenter {
 
         void getAllStations(Context context) throws MalformedURLException;
+
+        void getAllArrivalTimes(Context context, ArrayList<String> arrivalUrls) throws MalformedURLException;
     }
 }
