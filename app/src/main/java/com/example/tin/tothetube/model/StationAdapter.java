@@ -17,10 +17,15 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
 
     private ArrayList<Station> mStation;
     private Context context;
+    /* Initialise The Interface that handles onClicks*/
+    private StationPositionListener stationPositionListener;
 
-    public StationAdapter(ArrayList<Station> station, Context context) {
+    /* Constructor:
+     * Pass in the StationPositionListener Interface into the Adapter on construction */
+    public StationAdapter(ArrayList<Station> station, Context context, StationPositionListener listener) {
         this.mStation = station;
         this.context = context;
+        this.stationPositionListener = listener;
     }
 
     // We are passing the weather data via a method, not when the Adapter is created
@@ -33,8 +38,11 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
     @NonNull
     @Override
     public StationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-
-        View v = LayoutInflater.from(viewGroup.getContext())
+        /*
+         * For the onClick's on the Arrival TextViews to work we need to pass in the context
+         * provided in the constructor, this context is from the MainActivity
+         */
+        View v = LayoutInflater.from(context)
                 .inflate(R.layout.station_list_item, viewGroup, false);
 
         return new ViewHolder(v);
@@ -76,7 +84,28 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
             tvArrivalTime1 = itemView.findViewById(R.id.tv_arrivalTime1);
             tvArrivalTime2 = itemView.findViewById(R.id.tv_arrivalTime2);
 
+            /* Setting up the onClickListeners */
+            tvArrivalTime0.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    /* Implementing the interface method */
+                    stationPositionListener.tvArrivalTime0OnClick(view, getAdapterPosition());
+                }
+            });
+
+            tvArrivalTime1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    stationPositionListener.tvArrivalTime1OnClick(view, getAdapterPosition());
+                }
+            });
+
+            tvArrivalTime2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    stationPositionListener.tvArrivalTime2OnClick(view, getAdapterPosition());
+                }
+            });
         }
     }
-
 }

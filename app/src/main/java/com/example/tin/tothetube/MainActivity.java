@@ -4,14 +4,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.tin.tothetube.model.Station;
 import com.example.tin.tothetube.model.StationAdapter;
+import com.example.tin.tothetube.model.StationPositionListener;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements MainContract.MainView {
+public class MainActivity extends AppCompatActivity implements MainContract.MainView, StationPositionListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mAdapter = new StationAdapter(null, getApplicationContext());
+        mAdapter = new StationAdapter(null, getApplicationContext(), this);
         mRecyclerView.setAdapter(mAdapter);
 
     }
@@ -49,6 +53,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
     @Override
     public void showStation(ArrayList<Station> stations) {
         mAdapter.setStation(stations);
+    }
 
+    @Override
+    public void tvArrivalTime0OnClick(View v, int position) {
+        Toast.makeText(this, "Position for 1st is " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void tvArrivalTime1OnClick(View v, int position) {
+        Toast.makeText(this, "Position for 2nd is " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void tvArrivalTime2OnClick(View v, int position) {
+        Toast.makeText(this, "Position for 3rd is " + position, Toast.LENGTH_SHORT).show();
     }
 }
