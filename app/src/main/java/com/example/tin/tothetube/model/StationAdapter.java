@@ -12,9 +12,6 @@ import com.example.tin.tothetube.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Tin on 27/05/2018.
- */
 
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHolder> {
 
@@ -37,11 +34,9 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
     @Override
     public StationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 
-        // Create a new View and inflate the list_item Layout into it
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.station_list_item, viewGroup, false);
 
-        // Return the View we just created
         return new ViewHolder(v);
     }
 
@@ -51,8 +46,9 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
         Station station = mStation.get(position);
 
         viewHolder.tvStation.setText(station.getCommonName());
-
-        station.getNaptanId();
+        viewHolder.tvArrivalTime0.setText(String.valueOf(station.getArrivals().get(0).getTimeToStation()));
+        viewHolder.tvArrivalTime1.setText(String.valueOf(station.getArrivals().get(1).getTimeToStation()));
+        viewHolder.tvArrivalTime2.setText(String.valueOf(station.getArrivals().get(2).getTimeToStation()));
 
     }
 
@@ -68,11 +64,19 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         final TextView tvStation;
+        final TextView tvArrivalTime0;
+        final TextView tvArrivalTime1;
+        final TextView tvArrivalTime2;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             tvStation = itemView.findViewById(R.id.tv_station);
+            tvArrivalTime0 = itemView.findViewById(R.id.tv_arrivalTime0);
+            tvArrivalTime1 = itemView.findViewById(R.id.tv_arrivalTime1);
+            tvArrivalTime2 = itemView.findViewById(R.id.tv_arrivalTime2);
+
         }
     }
+
 }

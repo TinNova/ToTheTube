@@ -87,6 +87,10 @@ public class Station implements Parcelable {
         return lon;
     }
 
+    public ArrayList<Arrival> getArrivals() {
+        return arrivals;
+    }
+
     public void setArrivals(ArrayList<Arrival> arrivals) {
         this.arrivals = arrivals;
     }
