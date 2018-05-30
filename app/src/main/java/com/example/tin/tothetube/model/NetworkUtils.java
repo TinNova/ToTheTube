@@ -25,6 +25,8 @@ public class NetworkUtils {
     /* Path for API */
     private static final String STOP_POINT_PATH = "StopPoint";
     private static final String ARRIVALS_PATH = "Arrivals";
+    private static final String LINE_PATH = "Line";
+    private static final String STOP_POINT_PATHS = "StopPoints";
 
     /* Parameters for API*/
     private static final String STOP_TYPES_PARAM = "stopTypes";
@@ -33,11 +35,13 @@ public class NetworkUtils {
     private static final String LON_PARAM = "lon";
     private static final String APP_ID_PARAM = "app_id";
     private static final String APP_KEY_PARAM = "app_key";
+    private static final String TFL_NAT_RAIL_PARAM = "tflOperatedNationalRailStationsOnly";
 
     /* Parameter Values for API */
     // FOR THE STOPS API: https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/StopPoint/StopPoint_GetByGeoPoint
     public static final String METRO_STOP_TYPE = "NaptanMetroStation";
     public static final String RADIUS_METRES = "1000";
+    public static final String FALSE = "false";
     public static final String APP_ID = BuildConfig.TFL_APP_ID;
     public static final String APP_KEY = BuildConfig.TFL_APP_KEY;
 
@@ -45,12 +49,17 @@ public class NetworkUtils {
     public static final double DEFAULT_LAT = 51.514;
     public static final double DEFAULT_LON = -0.122;
 
+    public static String getLineUrl(String line) {
+
+        return buildLineUrl(line);
+    }
+
     public static String getRadiusUrl(double currentLat, double currentLon) {
 
         return buildRadiusUrl(currentLat, currentLon);
     }
 
-    public static String getArrivalsUrl(String naptanId){
+    public static String getArrivalsUrl(String naptanId) {
 
         return buildArrivalsUrl(naptanId);
     }
@@ -68,9 +77,9 @@ public class NetworkUtils {
 
         try {
 
-            URL tflStopUrl = new URL(radiusUri.toString());
-            Log.v(TAG, "tflStopUrl: " + tflStopUrl);
-            return convertUrlToString(tflStopUrl);
+            URL url = new URL(radiusUri.toString());
+            Log.v(TAG, "tflStopUrl: " + url);
+            return convertUrlToString(url);
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return null;
@@ -86,9 +95,9 @@ public class NetworkUtils {
 
         try {
 
-            URL tflStopUrl = new URL(arrivalsUri.toString());
-            Log.v(TAG, "tflStopUrl: " + tflStopUrl);
-            return convertUrlToString(tflStopUrl);
+            URL url = new URL(arrivalsUri.toString());
+            Log.v(TAG, "arrivalTimeUrl: " + url);
+            return convertUrlToString(url);
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return null;
@@ -98,5 +107,26 @@ public class NetworkUtils {
     private static String convertUrlToString(URL url) throws MalformedURLException {
 
         return url.toString();
+    }
+
+    // https://api.tfl.gov.uk/Line/victoria/StopPoints?tflOperatedNationalRailStationsOnly=false
+    // /StopPoints?tflOperatedNationalRailStationsOnly=false
+    private static String buildLineUrl(String line) {
+        Uri lineUri = Uri.parse(BASE_TFL_URL).buildUpon()
+                .appendPath(LINE_PATH)
+                .appendPath(line)
+                .appendPath(STOP_POINT_PATHS)
+                .appendQueryParameter(TFL_NAT_RAIL_PARAM, FALSE)
+                .build();
+
+        try {
+
+            URL url = new URL(lineUri.toString());
+            Log.v(TAG, "lineUrl: " + url);
+            return convertUrlToString(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

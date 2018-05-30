@@ -20,6 +20,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    /* Keys for the Intent */
+    public String TIME_TO_ARRIVAL = "TimeToArrival";
+    public static final String LINE_NAME = "LineName";
+    public String LINE_ID = "LineId";
+
     /*
      * Needed to populate the Adapter and the RecyclerView
      */
