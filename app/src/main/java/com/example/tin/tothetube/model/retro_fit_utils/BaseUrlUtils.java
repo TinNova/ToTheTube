@@ -1,14 +1,6 @@
-package com.example.tin.tothetube.model.utils;
+package com.example.tin.tothetube.model.retro_fit_utils;
 
 import com.example.tin.tothetube.BuildConfig;
-import com.example.tin.tothetube.model.NetworkUtils;
-
-//import retrofit2.Retrofit;
-//import retrofit2.converter.gson.GsonConverterFactory;
-
-/**
- * Created by Tin on 27/05/2018.
- */
 
 public class BaseUrlUtils {
 

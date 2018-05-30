@@ -1,4 +1,4 @@
-package com.example.tin.tothetube.model;
+package com.example.tin.tothetube.model.utils;
 
 import android.net.Uri;
 import android.util.Log;
@@ -23,7 +23,7 @@ public class NetworkUtils {
     // Lines API:
     // https://api.tfl.gov.uk/Line/victoria/StopPoints?tflOperatedNationalRailStationsOnly=false
 
-    public static final String BASE_TFL_URL = "https://api.tfl.gov.uk";
+    private static final String BASE_TFL_URL = "https://api.tfl.gov.uk";
 
     /* Path for API */
     private static final String STOP_POINT_PATH = "StopPoint";
@@ -42,11 +42,11 @@ public class NetworkUtils {
 
     /* Parameter Values for API */
     // FOR THE STOPS API: https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/StopPoint/StopPoint_GetByGeoPoint
-    public static final String METRO_STOP_TYPE = "NaptanMetroStation";
-    public static final String RADIUS_METRES = "1000";
-    public static final String FALSE = "false";
-    public static final String APP_ID = BuildConfig.TFL_APP_ID;
-    public static final String APP_KEY = BuildConfig.TFL_APP_KEY;
+    private static final String METRO_STOP_TYPE = "NaptanMetroStation";
+    private static final String RADIUS_METRES = "1000";
+    private static final String FALSE = "false";
+    private static final String APP_ID = BuildConfig.TFL_APP_ID;
+    private static final String APP_KEY = BuildConfig.TFL_APP_KEY;
 
     /* Default lat/lon refers to Covent Garden, it is used when user is outside of London */
     public static final double DEFAULT_LAT = 51.514;

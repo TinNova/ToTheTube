@@ -5,20 +5,17 @@ import android.content.Context;
 import com.example.tin.tothetube.model.Line;
 import com.example.tin.tothetube.model.NetworkConnection;
 import com.example.tin.tothetube.model.NetworkListener;
-import com.example.tin.tothetube.model.NetworkUtils;
+import com.example.tin.tothetube.model.utils.NetworkUtils;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-/**
- * Created by Tin on 30/05/2018.
- */
 
 public class DetailPresenter implements DetailContract.DetailPresenter {
 
     private DetailContract.DetailView detailView;
 
-    Context mcontext;
+    private Context mcontext;
 
     DetailPresenter(DetailContract.DetailView view) {
         this.detailView = view;

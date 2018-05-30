@@ -5,12 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.tin.tothetube.model.Station;
-import com.example.tin.tothetube.model.StationAdapter;
+import com.example.tin.tothetube.model.adapters.StationAdapter;
 import com.example.tin.tothetube.model.StationPositionListener;
 
 import java.net.MalformedURLException;

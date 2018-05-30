@@ -1,4 +1,4 @@
-package com.example.tin.tothetube.model;
+package com.example.tin.tothetube.model.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,28 +9,30 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.tin.tothetube.R;
+import com.example.tin.tothetube.model.Station;
+import com.example.tin.tothetube.model.StationPositionListener;
 
 import java.util.ArrayList;
 
 
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHolder> {
 
-    private ArrayList<Station> mStation;
+    private ArrayList<Station> mStations;
     private Context context;
     /* Initialise The Interface that handles onClicks*/
     private StationPositionListener stationPositionListener;
 
     /* Constructor:
      * Pass in the StationPositionListener Interface into the Adapter on construction */
-    public StationAdapter(ArrayList<Station> station, Context context, StationPositionListener listener) {
-        this.mStation = station;
+    public StationAdapter(ArrayList<Station> stations, Context context, StationPositionListener listener) {
+        this.mStations = stations;
         this.context = context;
         this.stationPositionListener = listener;
     }
 
-    // We are passing the weather data via a method, not when the Adapter is created
-    public void setStation(ArrayList<Station> station) {
-        this.mStation = station;
+    // We are passing the station data via a method, not when the Adapter is created
+    public void setStation(ArrayList<Station> stations) {
+        this.mStations = stations;
         notifyDataSetChanged();
 
     }
@@ -51,7 +53,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull StationAdapter.ViewHolder viewHolder, int position) {
 
-        Station station = mStation.get(position);
+        Station station = mStations.get(position);
 
         viewHolder.tvStation.setText(station.getCommonName());
         viewHolder.tvArrivalTime0.setText(String.valueOf
@@ -65,21 +67,21 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        if (mStation == null) {
+        if (mStations == null) {
             return 0;
         } else {
-            return mStation.size();
+            return mStations.size();
         }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         final TextView tvStation;
         final TextView tvArrivalTime0;
         final TextView tvArrivalTime1;
         final TextView tvArrivalTime2;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
 
             tvStation = itemView.findViewById(R.id.tv_station);

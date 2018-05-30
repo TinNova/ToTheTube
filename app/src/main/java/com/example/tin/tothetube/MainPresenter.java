@@ -6,14 +6,14 @@ import android.util.Log;
 import com.example.tin.tothetube.model.Arrival;
 import com.example.tin.tothetube.model.NetworkConnection;
 import com.example.tin.tothetube.model.NetworkListener;
-import com.example.tin.tothetube.model.NetworkUtils;
+import com.example.tin.tothetube.model.utils.NetworkUtils;
 import com.example.tin.tothetube.model.Station;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-import static com.example.tin.tothetube.model.NetworkUtils.DEFAULT_LAT;
-import static com.example.tin.tothetube.model.NetworkUtils.DEFAULT_LON;
+import static com.example.tin.tothetube.model.utils.NetworkUtils.DEFAULT_LAT;
+import static com.example.tin.tothetube.model.utils.NetworkUtils.DEFAULT_LON;
 
 
 public class MainPresenter implements MainContract.MainPresenter {
@@ -24,13 +24,13 @@ public class MainPresenter implements MainContract.MainPresenter {
 
     /* Used to help exit the for loop within the NetworkConnection class within the method
      * getArrivalTimesResponse */
-    int i;
+    private int i;
 
     MainPresenter(MainContract.MainView view) throws MalformedURLException {
         this.mainView = view;
     }
 
-    Context mcontext;
+    private Context mcontext;
 
     @Override
     public void getAllStations(Context context) throws MalformedURLException {

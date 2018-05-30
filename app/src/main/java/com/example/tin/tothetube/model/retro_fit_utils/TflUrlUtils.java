@@ -1,4 +1,4 @@
-package com.example.tin.tothetube.model.utils;
+package com.example.tin.tothetube.model.retro_fit_utils;
 
 //import com.example.tin.tothetube.model.Station;
 //
@@ -17,9 +17,6 @@ package com.example.tin.tothetube.model.utils;
 //import static com.example.tin.tothetube.model.utils.BaseUrlUtils.STOP_POINT_PATH;
 //import static com.example.tin.tothetube.model.utils.BaseUrlUtils.STOP_TYPES_PARAM;
 
-/**
- * Created by Tin on 27/05/2018.
- */
 
 public interface TflUrlUtils {
 

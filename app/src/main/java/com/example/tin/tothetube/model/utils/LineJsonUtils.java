@@ -1,6 +1,8 @@
-package com.example.tin.tothetube.model;
+package com.example.tin.tothetube.model.utils;
 
 import android.util.Log;
+
+import com.example.tin.tothetube.model.Line;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -8,9 +10,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by Tin on 30/05/2018.
- */
 
 public class LineJsonUtils {
 
