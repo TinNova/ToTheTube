@@ -54,9 +54,12 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
         Station station = mStation.get(position);
 
         viewHolder.tvStation.setText(station.getCommonName());
-        viewHolder.tvArrivalTime0.setText(String.valueOf(station.getArrivals().get(0).getTimeToStation()));
-        viewHolder.tvArrivalTime1.setText(String.valueOf(station.getArrivals().get(1).getTimeToStation()));
-        viewHolder.tvArrivalTime2.setText(String.valueOf(station.getArrivals().get(2).getTimeToStation()));
+        viewHolder.tvArrivalTime0.setText(String.valueOf
+                (station.getArrivals().get(0).getTimeToStation() + " secs"));
+        viewHolder.tvArrivalTime1.setText(String.valueOf
+                (station.getArrivals().get(1).getTimeToStation() + " secs"));
+        viewHolder.tvArrivalTime2.setText(String.valueOf
+                (station.getArrivals().get(2).getTimeToStation() + " secs"));
 
     }
 
