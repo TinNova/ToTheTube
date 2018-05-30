@@ -23,7 +23,7 @@ public class ArrivalJsonUtils {
 
     public static ArrayList<Arrival> parseArrivalJson(String response) {
 
-        ArrayList<Arrival> mArrival = new ArrayList<>();
+        ArrayList<Arrival> mArrivals = new ArrayList<>();
 
         try {
 
@@ -31,7 +31,7 @@ public class ArrivalJsonUtils {
             JSONArray tflJsonArray = new JSONArray(response);
 
         /* Using a for loop to cycle through each JsonObject within the listJsonArray */
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < tflJsonArray.length(); i++) {
 
             /* Get the ith forecast in the JSON and define it as a JsonObject */
                 JSONObject arrivalJsonObject = tflJsonArray.getJSONObject(i);
@@ -46,7 +46,7 @@ public class ArrivalJsonUtils {
                         timeToStation
                 );
 
-                mArrival.add(arrival);
+                mArrivals.add(arrival);
                 Log.d(TAG, "Arrival List: " + arrival);
 
             }
@@ -55,7 +55,7 @@ public class ArrivalJsonUtils {
             e.printStackTrace();
         }
 
-        return mArrival;
+        return mArrivals;
     }
 
 }

@@ -9,10 +9,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.tin.tothetube.R;
+import com.example.tin.tothetube.model.Arrival;
 import com.example.tin.tothetube.model.Station;
 import com.example.tin.tothetube.model.StationPositionListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHolder> {
@@ -62,7 +66,6 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
                 (station.getArrivals().get(1).getTimeToStation() + " secs"));
         viewHolder.tvArrivalTime2.setText(String.valueOf
                 (station.getArrivals().get(2).getTimeToStation() + " secs"));
-
     }
 
     @Override
@@ -112,5 +115,10 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
                 }
             });
         }
+    }
+
+    // this method binds the stop point to the row of recyclerView
+    public void bind(Station station) {
+
     }
 }

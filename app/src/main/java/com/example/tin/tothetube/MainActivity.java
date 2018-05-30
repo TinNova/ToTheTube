@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
     /* Keys for the Intent */
     public String TIME_TO_ARRIVAL = "TimeToArrival";
     public static final String LINE_NAME = "LineName";
+    public static final String STATION_ID = "StationId";
     public String LINE_ID = "LineId";
 
     /*
@@ -71,8 +72,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
 
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("TimeToArrival", mStation.get(position).getArrivals().get(0).getTimeToStation());
-        intent.putExtra("LineName", mStation.get(position).getArrivals().get(0).getLineName());
+        intent.putExtra(LINE_NAME, mStation.get(position).getArrivals().get(0).getLineName());
         intent.putExtra("LineId", mStation.get(position).getArrivals().get(0).getLineId());
+        intent.putExtra(STATION_ID, mStation.get(position).getNaptanId());
 
         startActivity(intent);
     }
@@ -85,8 +87,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
 
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("TimeToArrival", mStation.get(position).getArrivals().get(1).getTimeToStation());
-        intent.putExtra("LineName", mStation.get(position).getArrivals().get(1).getLineName());
+        intent.putExtra(LINE_NAME, mStation.get(position).getArrivals().get(1).getLineName());
         intent.putExtra("LineId", mStation.get(position).getArrivals().get(1).getLineId());
+        intent.putExtra(STATION_ID, mStation.get(position).getNaptanId());
 
         startActivity(intent);
     }
@@ -99,8 +102,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
 
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("TimeToArrival", mStation.get(position).getArrivals().get(2).getTimeToStation());
-        intent.putExtra("LineName", mStation.get(position).getArrivals().get(2).getLineName());
+        intent.putExtra(LINE_NAME, mStation.get(position).getArrivals().get(2).getLineName());
         intent.putExtra("LineId", mStation.get(position).getArrivals().get(2).getLineId());
+        intent.putExtra(STATION_ID, mStation.get(position).getNaptanId());
 
         startActivity(intent);
     }

@@ -3,6 +3,8 @@ package com.example.tin.tothetube.model.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +14,25 @@ import com.example.tin.tothetube.R;
 import com.example.tin.tothetube.model.Line;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class LineAdapter extends RecyclerView.Adapter<LineAdapter.ViewHolder> {
 
+    private static final String TAG = LineAdapter.class.getSimpleName();
+
     private ArrayList<Line> mLines;
     private Context context;
+    private String stationIdClickedOn;
 
-    public LineAdapter(ArrayList<Line> mLines, Context context) {
+    public LineAdapter(ArrayList<Line> mLines, Context context, String stationIdClickedOn) {
         this.mLines = mLines;
         this.context = context;
+        this.stationIdClickedOn = stationIdClickedOn;
     }
 
     // We are passing the lines data via a method, not when the Adapter is created
-    public void setLines (ArrayList<Line> lines) {
+    public void setLines(ArrayList<Line> lines) {
         this.mLines = lines;
         notifyDataSetChanged();
     }
@@ -44,8 +51,14 @@ public class LineAdapter extends RecyclerView.Adapter<LineAdapter.ViewHolder> {
 
         Line line = mLines.get(position);
 
-        viewHolder.tvStation.setText(line.getCommonName());
+        /* if the current stations ID matches the station clicked on, highlight the station name */
+        if ((line.getNaptanId()).equals(stationIdClickedOn)) {
 
+            viewHolder.tvStation.setText(Html.fromHtml("<b>" + line.getCommonName() + "</b>"));
+        } else {
+
+            viewHolder.tvStation.setText(line.getCommonName());
+        }
     }
 
     @Override

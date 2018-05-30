@@ -14,6 +14,8 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 import static com.example.tin.tothetube.MainActivity.LINE_NAME;
+import static com.example.tin.tothetube.MainActivity.STATION_ID;
+
 
 
 public class DetailActivity extends AppCompatActivity implements DetailContract.DetailView {
@@ -22,6 +24,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
 
     private DetailPresenter detailPresenter;
     private String line;
+    private String stationId;
 
     /*
      * Needed to populate the Adapter and the RecyclerView
@@ -39,6 +42,9 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         Intent getIntent = getIntent();
 
         line = getIntent.getStringExtra(LINE_NAME);
+        stationId = getIntent.getStringExtra(STATION_ID);
+
+        Log.d(TAG,"Clicked On Station ID: " + stationId);
 
         try {
             detailPresenter.getAllLines(DetailActivity.this, line);
@@ -51,7 +57,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mAdapter = new LineAdapter(null, getApplicationContext());
+        mAdapter = new LineAdapter(null, getApplicationContext(), stationId);
         mRecyclerView.setAdapter(mAdapter);
     }
 
