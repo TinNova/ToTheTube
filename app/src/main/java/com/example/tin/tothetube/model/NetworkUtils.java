@@ -16,9 +16,12 @@ public class NetworkUtils {
     // Station within 1km Radius API:
     // https://api.tfl.gov.uk/StopPoint?stopTypes=NaptanMetroStation&radius=1000&lat=51.514&lon=-0.122&app_id=0c37c519&app_key=89d67eb25bf2a3e6134f63fb82c72d5c
 
-    // Arrival Times to a Station
+    // Arrival Times to a Station API:
     // https://api.tfl.gov.uk/StopPoint/940GZZLUCGN/Arrivals
     // "940GZZLUCGN" = Station ID
+
+    // Lines API:
+    // https://api.tfl.gov.uk/Line/victoria/StopPoints?tflOperatedNationalRailStationsOnly=false
 
     public static final String BASE_TFL_URL = "https://api.tfl.gov.uk";
 

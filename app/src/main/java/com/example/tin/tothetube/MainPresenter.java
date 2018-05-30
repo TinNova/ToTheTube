@@ -22,6 +22,10 @@ public class MainPresenter implements MainContract.MainPresenter {
 
     private MainContract.MainView mainView;
 
+    /* Used to help exit the for loop within the NetworkConnection class within the method
+     * getArrivalTimesResponse */
+    int i;
+
     MainPresenter(MainContract.MainView view) throws MalformedURLException {
         this.mainView = view;
     }
@@ -58,7 +62,7 @@ public class MainPresenter implements MainContract.MainPresenter {
         });
     }
 
-    int i;
+
 
     @Override
     public void getAllArrivalTimes(Context context, final ArrayList<Station> stations) throws MalformedURLException {
@@ -73,15 +77,17 @@ public class MainPresenter implements MainContract.MainPresenter {
                     i++;
                     Log.d(TAG, "arrivals List:" + arrivals);
 
-                    /* Adding Arrival Time ArrayList to Station Arraylist */
+                    /* Adding Arrival Time ArrayList to Station ArrayList */
                     station.setArrivals(arrivals);
 
                     Log.d(TAG, "Station with Arrival Times: " + station);
 
                     Log.d(TAG, "i 1: " + i);
+                    /* Helper to exit the for loop within the NetworkConnection, when i == the number
+                    * of stations in the stations arrayList which in this case is 3 it sends the stations
+                     * to the MainActivity*/
                     if (stations.size() == i) {
 
-                        Log.d(TAG, "i 2: " + i);
                         Log.d(TAG, "stations: " + stations);
                         mainView.showStation(stations);
 

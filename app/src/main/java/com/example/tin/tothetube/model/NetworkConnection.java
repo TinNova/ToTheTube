@@ -17,8 +17,9 @@ public class NetworkConnection {
 
     private static final String TAG = NetworkConnection.class.getSimpleName();
 
-    private ArrayList<Station> mStation = new ArrayList<>();
-    private ArrayList<Arrival> mArrival = new ArrayList<>();
+    private ArrayList<Station> mStations = new ArrayList<>();
+    private ArrayList<Arrival> mArrivals = new ArrayList<>();
+    private ArrayList<Line> mLines = new ArrayList<>();
 
 
     private static NetworkConnection instance = null;
@@ -49,8 +50,8 @@ public class NetworkConnection {
     public void getStationResponseFromHttpUrl(String url, final NetworkListener.StationsListener listener) throws MalformedURLException {
 
         /* If the mStation ArrayList contains old data, remove it */
-        if (mStation != null) {
-            mStation.clear();
+        if (mStations != null) {
+            mStations.clear();
         }
 
         /* Handler for the JSON response when server returns ok */
@@ -61,11 +62,11 @@ public class NetworkConnection {
             @Override
             public void onResponse(final String response) {
 
-                mStation = StationJsonUtils.parseStationJson(response);
+                mStations = StationJsonUtils.parseStationJson(response);
                 Log.d(TAG + ": ", "Response : " + response);
                 /* Send mStation ArrayList to MainActivity */
                 try {
-                    listener.getStationArrayList(mStation);
+                    listener.getStationArrayList(mStations);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
@@ -89,8 +90,12 @@ public class NetworkConnection {
     }
 
 
-
     public void getArrivalTimesResponse(ArrayList<Station> stations, final NetworkListener.ArrivalsListener listener) throws MalformedURLException {
+
+        /* If the mArrivals ArrayList contains old data, remove it */
+        if (mArrivals != null) {
+            mArrivals.clear();
+        }
 
         int i;
         for (i = 0; i < stations.size(); i++) {
@@ -98,13 +103,6 @@ public class NetworkConnection {
             final Station mStation = stations.get(i);
 
             String url = NetworkUtils.getArrivalsUrl(mStation.getNaptanId());
-
-            //TODO: this should be done only when the 0th Arrival Url is passed
-
-//        /* If the mStation ArrayList contains old data, remove it */
-//        if (mStation != null) {
-//            mStation.clear();
-//        }
 
         /* Handler for the JSON response when server returns ok */
             final com.android.volley.Response.Listener<String>
@@ -114,10 +112,10 @@ public class NetworkConnection {
                 @Override
                 public void onResponse(final String response) {
 
-                    mArrival = ArrivalJsonUtils.parseArrivalJson(response);
+                    mArrivals = ArrivalJsonUtils.parseArrivalJson(response);
                     Log.d(TAG + ": ", "Response : " + response);
                 /* Send mStation ArrayList to MainActivity */
-                    listener.getArrivalsArrayList(mArrival, mStation);
+                    listener.getArrivalsArrayList(mArrivals, mStation);
                 }
             };
 
@@ -137,5 +135,43 @@ public class NetworkConnection {
 
             mRequestQueue.add(request);
         }
+    }
+
+    public void getLineResponseFromHttpUrl(String url, final NetworkListener.LinesListener listener) throws MalformedURLException {
+
+        /* If the mStation ArrayList contains old data, remove it */
+        if (mLines != null) {
+            mLines.clear();
+        }
+
+        /* Handler for the JSON response when server returns ok */
+        final com.android.volley.Response.Listener<String>
+                responseListener = new com.android.volley.Response.Listener<String>() {
+
+            /* If response is successful */
+            @Override
+            public void onResponse(final String response) {
+
+                mLines = LineJsonUtils.parseLineJson(response);
+                Log.d(TAG + ": ", "Response : " + response);
+                /* Send mLines ArrayList to DetailPresenter */
+                listener.getLinesArrayList(mLines);
+            }
+        };
+
+        /* Handler for when the server returns an error response */
+        com.android.volley.Response.ErrorListener errorListener = new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.d(TAG, "Volley Lines onErrorResponse: " + error);
+            }
+        };
+
+        /* This is the body of the Request */
+        StringRequest request = new StringRequest(Request.Method.GET, url, responseListener, errorListener) {
+        };
+
+        mRequestQueue.add(request);
     }
 }
