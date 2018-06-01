@@ -3,21 +3,18 @@ package com.example.tin.tothetube.model.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by Tin on 30/05/2018.
- */
 
 public class Line implements Parcelable {
 
-    String naptanId;
-    String commonName;
+    private final String naptanId;
+    private final String commonName;
 
     public Line(String naptanId, String commonName) {
         this.naptanId = naptanId;
         this.commonName = commonName;
     }
 
-    protected Line(Parcel in) {
+    private Line(Parcel in) {
         naptanId = in.readString();
         commonName = in.readString();
     }

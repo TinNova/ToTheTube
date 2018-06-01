@@ -3,15 +3,12 @@ package com.example.tin.tothetube.model.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by Tin on 27/05/2018.
- */
 
 public class Arrival implements Parcelable {
 
-    String lineId; // // Needed for when the arrival time is clicked on to show the line it's connected to in DetailActivity
-    String lineName;
-    long timeToStation; // Needed to find the next three trains and their arrival times
+    private final String lineId; // // Needed for when the arrival time is clicked on to show the line it's connected to in DetailActivity
+    private final String lineName;
+    private final long timeToStation; // Needed to find the next three trains and their arrival times
 
     public Arrival(String lineId, String lineName, long timeToStation) {
         this.lineId = lineId;
@@ -19,7 +16,7 @@ public class Arrival implements Parcelable {
         this.timeToStation = timeToStation;
     }
 
-    protected Arrival(Parcel in) {
+    private Arrival(Parcel in) {
         lineId = in.readString();
         lineName = in.readString();
         timeToStation = in.readLong();

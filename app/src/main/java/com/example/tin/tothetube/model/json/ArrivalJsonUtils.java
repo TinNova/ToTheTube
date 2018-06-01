@@ -19,8 +19,6 @@ public class ArrivalJsonUtils {
     private static final String TFL_LINE_NAME = "lineName";
     private static final String TFL_TIME_TO_STATION = "timeToStation";
 
-    private static final String TFL_JSON_ARRAY = "json";
-
     public static ArrayList<Arrival> parseArrivalJson(String response) {
 
         ArrayList<Arrival> mArrivals = new ArrayList<>();

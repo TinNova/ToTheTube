@@ -7,11 +7,8 @@ import com.example.tin.tothetube.model.models.Line;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-/**
- * Created by Tin on 30/05/2018.
- */
 
-public interface DetailContract {
+interface DetailContract {
 
     interface DetailView {
 

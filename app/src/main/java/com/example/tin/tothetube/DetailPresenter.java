@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class DetailPresenter implements DetailContract.DetailPresenter {
 
-    private DetailContract.DetailView detailView;
+    private final DetailContract.DetailView detailView;
 
     private Context mcontext;
 

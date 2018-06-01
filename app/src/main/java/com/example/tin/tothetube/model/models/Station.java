@@ -5,20 +5,17 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-/**
- * Created by Tin on 27/05/2018.
- */
 
 public class Station implements Parcelable {
 
     // What we need from the Stops API:
     // https://api.tfl.gov.uk/StopPoint?stopTypes=NaptanMetroStation&radius=1000&modes=tube&categories=none&lat=51.514&lon=-0.122&app_id=0c37c519&app_key=89d67eb25bf2a3e6134f63fb82c72d5c
 
-    private String naptanId; // Id of the station. REQUIRED for the Arrival Url
-    private String commonName; // Human name of the station
-    private double distance; // How far away the station in (in metres probably?)
-    private double lat; // The coordinates of the station
-    private double lon; // The coordinates of the station
+    private final String naptanId; // Id of the station. REQUIRED for the Arrival Url
+    private final String commonName; // Human name of the station
+    private final double distance; // How far away the station in (in metres probably?)
+    private final double lat; // The coordinates of the station
+    private final double lon; // The coordinates of the station
     private ArrayList<Arrival> arrivals; // Arraylist of Arrival times for this station
 
     public Station(String naptanId, String commonName, double distance, double lat, double lon, ArrayList<Arrival> arrivals) {
@@ -30,7 +27,7 @@ public class Station implements Parcelable {
         this.arrivals = arrivals;
     }
 
-    protected Station(Parcel in) {
+    private Station(Parcel in) {
         naptanId = in.readString();
         commonName = in.readString();
         distance = in.readDouble();
@@ -73,18 +70,6 @@ public class Station implements Parcelable {
 
     public String getCommonName() {
         return commonName;
-    }
-
-    public double getDistance() {
-        return distance;
-    }
-
-    public double getLat() {
-        return lat;
-    }
-
-    public double getLon() {
-        return lon;
     }
 
     public ArrayList<Arrival> getArrivals() {

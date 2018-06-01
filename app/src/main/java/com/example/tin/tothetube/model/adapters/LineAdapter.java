@@ -20,8 +20,8 @@ public class LineAdapter extends RecyclerView.Adapter<LineAdapter.ViewHolder> {
     private static final String TAG = LineAdapter.class.getSimpleName();
 
     private ArrayList<Line> mLines;
-    private Context context;
-    private String stationIdClickedOn;
+    private final Context context;
+    private final String stationIdClickedOn;
 
     public LineAdapter(ArrayList<Line> mLines, Context context, String stationIdClickedOn) {
         this.mLines = mLines;

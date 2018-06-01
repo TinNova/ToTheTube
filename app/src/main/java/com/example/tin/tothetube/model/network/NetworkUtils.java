@@ -107,7 +107,7 @@ public class NetworkUtils {
         }
     }
 
-    private static String convertUrlToString(URL url) throws MalformedURLException {
+    private static String convertUrlToString(URL url) {
 
         return url.toString();
     }

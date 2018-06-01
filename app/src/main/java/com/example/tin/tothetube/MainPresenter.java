@@ -20,13 +20,13 @@ public class MainPresenter implements MainContract.MainPresenter {
 
     private static final String TAG = MainPresenter.class.getSimpleName();
 
-    private MainContract.MainView mainView;
+    private final MainContract.MainView mainView;
 
     /* Used to help exit the for loop within the NetworkConnection class within the method
      * getArrivalTimesResponse */
     private int i;
 
-    MainPresenter(MainContract.MainView view) throws MalformedURLException {
+    MainPresenter(MainContract.MainView view) {
         this.mainView = view;
     }
 
@@ -87,15 +87,4 @@ public class MainPresenter implements MainContract.MainPresenter {
                 }
             });
     }
-
-
-    //TODO:
-    /** NOW MAKE A NETWORK CONNECTION TO GET THE ARRIVAL TIMES! */
-    /** Display the arrival times under each station */
-    //--OR--//
-    /** Get the ArrayList of Arrival Times
-     * Only after the Arrival times ArrayList has been build should we add the Station
-     * and Arrival times to the Adapter. Then in onBindViewHolder make sure we add the
-     * Station followed by that stations three arrival times.
-     * Then the onClick can be handled in the presenter, see StarWars example for this. */
 }

@@ -44,16 +44,7 @@ public class NetworkConnection {
         return instance;
     }
 
-    /* This prevents the code from needed to pass the context each time */
-    public static synchronized NetworkConnection getInstance() {
-        if (null == instance) {
-            throw new IllegalStateException(NetworkConnection.class.getSimpleName() +
-                    " is not initialized, call getInstance(...) first");
-        }
-        return instance;
-    }
-
-    public void getStationResponseFromHttpUrl(String url, final NetworkListener.StationsListener listener) throws MalformedURLException {
+    public void getStationResponseFromHttpUrl(String url, final NetworkListener.StationsListener listener) {
 
         /* If the mStation ArrayList contains old data, remove it */
         if (mStations != null) {
@@ -96,7 +87,7 @@ public class NetworkConnection {
     }
 
 
-    public void getArrivalTimesResponse(ArrayList<Station> stations, final NetworkListener.ArrivalsListener listener) throws MalformedURLException {
+    public void getArrivalTimesResponse(ArrayList<Station> stations, final NetworkListener.ArrivalsListener listener) {
 
         /* If the mArrivals ArrayList contains old data, remove it */
         if (mArrivals != null) {
@@ -143,7 +134,7 @@ public class NetworkConnection {
         }
     }
 
-    public void getLineResponseFromHttpUrl(String url, final NetworkListener.LinesListener listener) throws MalformedURLException {
+    public void getLineResponseFromHttpUrl(String url, final NetworkListener.LinesListener listener) {
 
         /* If the mStation ArrayList contains old data, remove it */
         if (mLines != null) {

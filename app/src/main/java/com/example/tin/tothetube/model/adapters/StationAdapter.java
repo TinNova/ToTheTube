@@ -18,9 +18,9 @@ import java.util.ArrayList;
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHolder> {
 
     private ArrayList<Station> mStations;
-    private Context context;
+    private final Context context;
     /* Initialise The Interface that handles onClicks*/
-    private StationPositionListener stationPositionListener;
+    private final StationPositionListener stationPositionListener;
 
     /* Constructor:
      * Pass in the StationPositionListener Interface into the Adapter on construction */
@@ -111,10 +111,5 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
                 }
             });
         }
-    }
-
-    // this method binds the stop point to the row of recyclerView
-    public void bind(Station station) {
-
     }
 }
