@@ -3,17 +3,17 @@ package com.example.tin.tothetube;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.tin.tothetube.model.Arrival;
-import com.example.tin.tothetube.model.NetworkConnection;
-import com.example.tin.tothetube.model.NetworkListener;
-import com.example.tin.tothetube.model.utils.NetworkUtils;
-import com.example.tin.tothetube.model.Station;
+import com.example.tin.tothetube.model.models.Arrival;
+import com.example.tin.tothetube.model.network.NetworkConnection;
+import com.example.tin.tothetube.model.network.NetworkListener;
+import com.example.tin.tothetube.model.network.NetworkUtils;
+import com.example.tin.tothetube.model.models.Station;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-import static com.example.tin.tothetube.model.utils.NetworkUtils.DEFAULT_LAT;
-import static com.example.tin.tothetube.model.utils.NetworkUtils.DEFAULT_LON;
+import static com.example.tin.tothetube.model.network.NetworkUtils.DEFAULT_LAT;
+import static com.example.tin.tothetube.model.network.NetworkUtils.DEFAULT_LON;
 
 
 public class MainPresenter implements MainContract.MainPresenter {
@@ -38,6 +38,8 @@ public class MainPresenter implements MainContract.MainPresenter {
         String stationUrl = NetworkUtils.getRadiusUrl(DEFAULT_LAT, DEFAULT_LON);
 
         mcontext = context;
+        mainView.showLoading();
+
         /*
          * Use the String URL "weatherRequestUrl" to request the JSON from the server
          * and parse it
@@ -45,16 +47,6 @@ public class MainPresenter implements MainContract.MainPresenter {
         NetworkConnection.getInstance(context).getStationResponseFromHttpUrl(stationUrl, new NetworkListener.StationsListener() {
             @Override
             public void getStationArrayList(ArrayList<Station> stations) throws MalformedURLException {
-
-                /* Show weather on screen */
-//                mainView.showStation(stations);
-
-                /* Taking the naptanId from every station item and create a list of Arrival URLs */
-//                ArrayList<String> napIds = new ArrayList<>();
-//                for (int i = 0; i < stations.size(); i++) {
-//                    String arrivalUrl = NetworkUtils.getArrivalsUrl(stations.get(i).getNaptanId());
-//                    napIds.add(arrivalUrl);
-//                }
 
                 getAllArrivalTimes(mcontext, stations);
 

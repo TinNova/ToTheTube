@@ -1,4 +1,8 @@
-package com.example.tin.tothetube.model;
+package com.example.tin.tothetube.model.network;
+
+import com.example.tin.tothetube.model.models.Arrival;
+import com.example.tin.tothetube.model.models.Line;
+import com.example.tin.tothetube.model.models.Station;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;

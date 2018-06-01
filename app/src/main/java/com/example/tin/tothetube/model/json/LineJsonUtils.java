@@ -1,8 +1,8 @@
-package com.example.tin.tothetube.model.utils;
+package com.example.tin.tothetube.model.json;
 
 import android.util.Log;
 
-import com.example.tin.tothetube.model.Line;
+import com.example.tin.tothetube.model.models.Line;
 
 import org.json.JSONArray;
 import org.json.JSONException;

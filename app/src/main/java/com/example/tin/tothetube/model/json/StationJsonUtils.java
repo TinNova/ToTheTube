@@ -1,9 +1,9 @@
-package com.example.tin.tothetube.model.utils;
+package com.example.tin.tothetube.model.json;
 
 import android.util.Log;
 
-import com.example.tin.tothetube.model.Arrival;
-import com.example.tin.tothetube.model.Station;
+import com.example.tin.tothetube.model.models.Arrival;
+import com.example.tin.tothetube.model.models.Station;
 
 import org.json.JSONArray;
 import org.json.JSONException;

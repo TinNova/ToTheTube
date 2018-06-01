@@ -1,4 +1,4 @@
-package com.example.tin.tothetube.model.utils;
+package com.example.tin.tothetube.model.network;
 
 import android.net.Uri;
 import android.util.Log;

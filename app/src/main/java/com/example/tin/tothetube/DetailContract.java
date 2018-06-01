@@ -2,7 +2,7 @@ package com.example.tin.tothetube;
 
 import android.content.Context;
 
-import com.example.tin.tothetube.model.Line;
+import com.example.tin.tothetube.model.models.Line;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -16,6 +16,10 @@ public interface DetailContract {
     interface DetailView {
 
         void showLines(ArrayList<Line> lines);
+
+        void showLoading();
+
+        void hideLoading();
     }
 
     interface DetailPresenter {

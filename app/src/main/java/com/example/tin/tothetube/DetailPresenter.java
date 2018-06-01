@@ -2,10 +2,10 @@ package com.example.tin.tothetube;
 
 import android.content.Context;
 
-import com.example.tin.tothetube.model.Line;
-import com.example.tin.tothetube.model.NetworkConnection;
-import com.example.tin.tothetube.model.NetworkListener;
-import com.example.tin.tothetube.model.utils.NetworkUtils;
+import com.example.tin.tothetube.model.models.Line;
+import com.example.tin.tothetube.model.network.NetworkConnection;
+import com.example.tin.tothetube.model.network.NetworkListener;
+import com.example.tin.tothetube.model.network.NetworkUtils;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -27,6 +27,8 @@ public class DetailPresenter implements DetailContract.DetailPresenter {
         String lineUrl = NetworkUtils.getLineUrl(line);
 
         mcontext = context;
+
+        detailView.showLoading();
         /*
          * Use the String URL "lineUrl" to request the JSON from the server
          * and parse it

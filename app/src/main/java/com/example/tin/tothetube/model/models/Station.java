@@ -1,4 +1,4 @@
-package com.example.tin.tothetube.model;
+package com.example.tin.tothetube.model.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

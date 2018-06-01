@@ -2,7 +2,7 @@ package com.example.tin.tothetube;
 
 import android.content.Context;
 
-import com.example.tin.tothetube.model.Station;
+import com.example.tin.tothetube.model.models.Station;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -16,6 +16,10 @@ public interface MainContract {
     interface MainView {
 
         void showStation(ArrayList<Station> stations);
+
+        void showLoading();
+
+        void hideLoading();
     }
 
     interface MainPresenter {

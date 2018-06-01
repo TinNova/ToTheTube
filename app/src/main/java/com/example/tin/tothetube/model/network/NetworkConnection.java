@@ -1,4 +1,4 @@
-package com.example.tin.tothetube.model;
+package com.example.tin.tothetube.model.network;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,10 +8,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tin.tothetube.model.utils.ArrivalJsonUtils;
-import com.example.tin.tothetube.model.utils.LineJsonUtils;
-import com.example.tin.tothetube.model.utils.NetworkUtils;
-import com.example.tin.tothetube.model.utils.StationJsonUtils;
+import com.example.tin.tothetube.model.models.Arrival;
+import com.example.tin.tothetube.model.models.Line;
+import com.example.tin.tothetube.model.models.Station;
+import com.example.tin.tothetube.model.json.ArrivalJsonUtils;
+import com.example.tin.tothetube.model.json.LineJsonUtils;
+import com.example.tin.tothetube.model.json.StationJsonUtils;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;

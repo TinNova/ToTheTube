@@ -9,14 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.tin.tothetube.R;
-import com.example.tin.tothetube.model.Arrival;
-import com.example.tin.tothetube.model.Station;
+import com.example.tin.tothetube.model.models.Station;
 import com.example.tin.tothetube.model.StationPositionListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 
 
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHolder> {
