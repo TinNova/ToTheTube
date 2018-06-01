@@ -1,35 +1,32 @@
-package com.example.tin.tothetube.model;
+package com.example.tin.tothetube.model.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by Tin on 27/05/2018.
- */
 
 public class Arrival implements Parcelable {
 
-    String lineId; // // Needed for when the arrival time is clicked on to show the line it's connected to in DetailActivity
-    String lineName;
-    int timeToStation; // Needed to find the next three trains and their arrival times
+    private final String lineId; // // Needed for when the arrival time is clicked on to show the line it's connected to in DetailActivity
+    private final String lineName;
+    private final long timeToStation; // Needed to find the next three trains and their arrival times
 
-    public Arrival(String lineId, String lineName, int timeToStation) {
+    public Arrival(String lineId, String lineName, long timeToStation) {
         this.lineId = lineId;
         this.lineName = lineName;
         this.timeToStation = timeToStation;
     }
 
-    protected Arrival(Parcel in) {
+    private Arrival(Parcel in) {
         lineId = in.readString();
         lineName = in.readString();
-        timeToStation = in.readInt();
+        timeToStation = in.readLong();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(lineId);
         dest.writeString(lineName);
-        dest.writeInt(timeToStation);
+        dest.writeLong(timeToStation);
     }
 
     @Override
@@ -57,7 +54,7 @@ public class Arrival implements Parcelable {
         return lineName;
     }
 
-    public int getTimeToStation() {
+    public long getTimeToStation() {
         return timeToStation;
     }
 }
